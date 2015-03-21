@@ -2,7 +2,8 @@
 
 
 ## creates a matrix(list) which can cache the results of a inverse operation for further retrievals. Both orignal matrix and its inverse are stored
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(x = matrix()) 
+{
   
   #xinv is the inverse matrix
   xinv <- NULL
@@ -10,9 +11,13 @@ makeCacheMatrix <- function(x = matrix()) {
   # sets the actual matrix, x
   set <- function(y) 
   {
+  	# the matrix x is set, as x is in a diffent environment from y, <<- is used to set it.
     x <<- y
-    xinv <<- NULL #  <<- as xinv is in another environment than the current function. 
-    # Also useful when a matrix is changed, the inverse is set to null so that a new inverse is computed at next invocation
+    
+   #  <<- as xinv is in another environment than the current function. 
+   # Also useful when a matrix is changed, the inverse is set to null so that a new inverse is computed at next invocation
+
+    xinv <<- NULL
   }
   
   # returns the actual matrix x. the search is first done with in the get function environ and then the parent of this environ where x is found
@@ -37,7 +42,8 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## uses solve method to find the inverse of a matrix for the first time. And retrieves a cached result if the matrix remains the same for next invocations
 
-cacheSolve <- function(x, ...) {
+cacheSolve <- function(x, ...) 
+{
 	
   # Get the cached inverse result
   inverse <- x$getinverse()
